@@ -20,7 +20,7 @@ export class MMKVStorageWrapper implements PersistentStorage<string> {
   }
 
   getItem(key: string): string | Promise<string | null> | null {
-    return this.storage.getItem(key);
+    return this.storage.getStringAsync(key);
   }
 
   removeItem(key: string): void | Promise<void> {
@@ -35,7 +35,7 @@ export class MMKVStorageWrapper implements PersistentStorage<string> {
   setItem(key: string, value: string): void | Promise<void> {
     return new Promise((resolve, reject) => {
       this.storage
-        .setItem(key, value)
+        .setStringAsync(key, value)
         .then(() => resolve())
         .catch(() => reject());
     });
